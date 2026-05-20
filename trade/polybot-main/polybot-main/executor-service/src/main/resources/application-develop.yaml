@@ -1,0 +1,37 @@
+hft:
+  mode: PAPER
+  events:
+    enabled: true
+  polymarket:
+    market-ws-enabled: true
+    auth:
+      private-key: ""
+      auto-create-or-derive-api-creds: false
+
+logging:
+  level:
+    com.polybot.hft: INFO
+    com.polybot.hft.executor.settlement: DEBUG
+
+executor:
+  sim:
+    enabled: true
+    fills-enabled: true
+    fill-poll-millis: 500
+    maker-fill-probability-per-poll: 0.01
+    maker-fill-probability-multiplier-per-tick: 1.0
+    maker-fill-probability-max-per-poll: 0.015
+    maker-fill-fraction-of-remaining: 0.25
+
+  onchain:
+    rpc-url: ${POLYGON_RPC_URL:https://polygon-rpc.com}
+    proxy-wallet-factory-address: ""
+
+  settlement:
+    enabled: false
+    dry-run: true
+    poll-interval-millis: 30000
+    min-merge-shares: 10
+    max-retries: 3
+    merge-only-near-end: true
+    merge-seconds-before-end: 600

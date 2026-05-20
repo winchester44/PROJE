@@ -1,0 +1,39 @@
+[project]
+name = "tradingview-mcp-server"
+version = "0.7.0"
+description = "Advanced AI Trading Intelligence Framework — MCP server with walk-forward backtesting, trade logs, equity curves, 1h timeframe, sentiment, Yahoo Finance, and 30+ technical analysis tools"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+  { name = "Atila Ahmettaner" }
+]
+urls = { Repository = "https://github.com/atilaahmettaner/tradingview-mcp" }
+keywords = ["mcp", "tradingview", "crypto", "technical analysis", "screener", "backtesting", "walk-forward", "sentiment", "yahoo-finance", "trading", "agents", "algorithmic-trading", "equity-curve"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+]
+dependencies = [
+  "feedparser>=6.0.12",
+  "mcp[cli]>=1.12.0",
+  "tradingview-screener>=0.6.4",
+  "tradingview-ta>=3.3.0",
+]
+
+[project.scripts]
+# Entry point now points to packaged module
+tradingview-mcp = "tradingview_mcp.server:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+tradingview_mcp = ["coinlist/*.txt"]
+
+[tool.uv]
+dev-dependencies = []
+package = true
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"

@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  tradingview-mcp:
+    build: .
+    image: atilaahmet/tradingview-mcp:latest
+    container_name: tradingview-mcp
+    ports:
+      - "8080:8000"
+    restart: unless-stopped
+    environment:
+      # Optional: Add any future API keys or environment variables here
+      - PORT=8000
+      - HOST=0.0.0.0

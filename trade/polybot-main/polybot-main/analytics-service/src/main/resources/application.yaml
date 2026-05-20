@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: analytics-service
+  threads:
+    virtual:
+      enabled: true
+
+server:
+  port: 8082
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+    tags:
+      application: ${spring.application.name}
+  endpoint:
+    health:
+      show-details: always
+      probes:
+        enabled: true
+    prometheus:
+      enabled: true
+
+logging:
+  level:
+    com.clickhouse: WARN
+    com.clickhouse.client.http: WARN
+    com.clickhouse.jdbc: WARN
+    org.apache.coyote.http11.Http11Processor: WARN

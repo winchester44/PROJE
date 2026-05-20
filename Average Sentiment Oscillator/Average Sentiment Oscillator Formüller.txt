@@ -1,0 +1,65 @@
+Average Sentiment Oscillator
+Matriks Indicator Builder Formülü:
+
+length:=input("Period?",1,100,20);
+mode:=input("indikatör çalıştırma modu:",0,2,0);
+intrarange:=H-L;
+grouplow:=LLV(L,length);
+grouphigh:=HHV(H,length);
+groupopen:=ref(o,-length+1);
+grouprange:=grouphigh-grouplow;
+K1:=if(intrarange=0,1,intrarange);
+K2:=if(grouprange=0,1,grouprange);
+intrabarbulls:=((((C-L)+(H-O))/2)*100)/K1;
+groupbulls:=((((C-grouplow)+(grouphigh-groupopen))/2)*100)/K2;
+intrabarbears:=((((H-C)+(O-L))/2)*100)/K1;
+groupbears:=((((grouphigh-C)+(groupopen-grouplow))/2)*100)/K2;
+TempBufferBulls:=if(mode=0,(intrabarbulls+groupbulls)/2,if(mode=1,intrabarbulls,groupbulls));
+TempBufferBears:=if(mode=0,(intrabarbears+groupbears)/2,if(mode=1,intrabarbears,groupbears));
+ASOBulls:=mov(TempBufferBulls,length,S);
+ASOBears:=mov(TempBufferBears,length,S);
+ASOBulls;
+ASOBears
+
+
+Matriks EXPLORER AL Formülü:
+
+length:=20;
+mode:=0;
+intrarange:=H-L;
+grouplow:=LLV(L,length);
+grouphigh:=HHV(H,length);
+groupopen:=ref(o,-length+1);
+grouprange:=grouphigh-grouplow;
+K1:=if(intrarange=0,1,intrarange);
+K2:=if(grouprange=0,1,grouprange);
+intrabarbulls:=((((C-L)+(H-O))/2)*100)/K1;
+groupbulls:=((((C-grouplow)+(grouphigh-groupopen))/2)*100)/K2;
+intrabarbears:=((((H-C)+(O-L))/2)*100)/K1;
+groupbears:=((((grouphigh-C)+(groupopen-grouplow))/2)*100)/K2;
+TempBufferBulls:=if(mode=0,(intrabarbulls+groupbulls)/2,if(mode=1,intrabarbulls,groupbulls));
+TempBufferBears:=if(mode=0,(intrabarbears+groupbears)/2,if(mode=1,intrabarbears,groupbears));
+ASOBulls:=mov(TempBufferBulls,length,S);
+ASOBears:=mov(TempBufferBears,length,S);
+Cross(ASOBulls,ASOBears)
+
+Matriks EXPLORER SAT Formülü:
+
+length:=20;
+mode:=0;
+intrarange:=H-L;
+grouplow:=LLV(L,length);
+grouphigh:=HHV(H,length);
+groupopen:=ref(o,-length+1);
+grouprange:=grouphigh-grouplow;
+K1:=if(intrarange=0,1,intrarange);
+K2:=if(grouprange=0,1,grouprange);
+intrabarbulls:=((((C-L)+(H-O))/2)*100)/K1;
+groupbulls:=((((C-grouplow)+(grouphigh-groupopen))/2)*100)/K2;
+intrabarbears:=((((H-C)+(O-L))/2)*100)/K1;
+groupbears:=((((grouphigh-C)+(groupopen-grouplow))/2)*100)/K2;
+TempBufferBulls:=if(mode=0,(intrabarbulls+groupbulls)/2,if(mode=1,intrabarbulls,groupbulls));
+TempBufferBears:=if(mode=0,(intrabarbears+groupbears)/2,if(mode=1,intrabarbears,groupbears));
+ASOBulls:=mov(TempBufferBulls,length,S);
+ASOBears:=mov(TempBufferBears,length,S);
+Cross(ASOBears,ASOBulls)

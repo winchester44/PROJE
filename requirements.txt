@@ -1,0 +1,17 @@
+streamlit
+plotly
+pandas
+numpy
+yfinance
+requests
+beautifulsoup4
+deep-translator
+scikit-learn
+python-dotenv
+transformers
+torch
+finvizfinance
+fredapi
+ccxt
+lightgbm
+scipy

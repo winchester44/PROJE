@@ -1,0 +1,20 @@
+spring:
+  config:
+    import: classpath:polybot-common.yaml
+  application:
+    name: executor-service
+
+server:
+  port: 8080
+
+hft:
+  polymarket:
+    auth:
+      private-key: ${POLYMARKET_PRIVATE_KEY:}
+      signature-type: ${POLYMARKET_SIGNATURE_TYPE:0}
+      funder-address: ${POLYMARKET_FUNDER_ADDRESS:}
+      api-key: ${POLYMARKET_API_KEY:}
+      api-secret: ${POLYMARKET_API_SECRET:}
+      api-passphrase: ${POLYMARKET_API_PASSPHRASE:}
+      nonce: ${POLYMARKET_API_NONCE:0}
+

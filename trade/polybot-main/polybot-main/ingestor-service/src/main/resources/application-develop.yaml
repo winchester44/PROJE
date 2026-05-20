@@ -1,0 +1,57 @@
+hft:
+  events:
+    enabled: true
+    market-ws-cache-publish-on-start: true
+    # Publish periodic TOB snapshots to keep decision-time ASOF joins "fresh" even when the book is stable.
+    market-ws-snapshot-publish-millis: 1000
+  polymarket:
+    market-ws-enabled: true
+    market-ws-cache-path: .cache/ws/market-ws-cache.ingestor.json
+    market-ws-cache-flush-millis: 5000
+
+ingestor:
+  clickhouse:
+    url: http://localhost:8123
+    database: polybot
+    user: default
+    password: ""
+    timeout-seconds: 10
+  polymarket:
+    username: ${POLYMARKET_TARGET_USER:}
+  polling:
+    enabled: true
+    backfill-on-start: false
+    page-size: 500
+  polygon:
+    enabled: true
+    rpc-url: ${POLYGON_RPC_URL:https://polygon-rpc.com}
+    poll-interval-millis: 100
+    max-receipts-per-poll: 25
+    request-delay-millis: 100
+    receipt-workers: 4
+    block-timestamp-cache-size: 50000
+    backfill:
+      enabled: true
+      interval-seconds: 30
+      batch-size: 250
+      request-delay-millis: 0
+  market-ws:
+    enabled: true
+    discovery-interval-seconds: 30
+    lookback-15m-minutes: 30
+    lookahead-15m-minutes: 15
+    lookback-1h-hours: 2
+    lookahead-1h-hours: 1
+    request-delay-millis: 100
+  market-context:
+    enabled: true
+    market-trades-limit: 50
+    market-trades-min-interval-seconds: 10
+    clob-book-min-interval-seconds: 1
+    gamma-min-interval-seconds: 60
+    gamma-poll-interval-seconds: 60
+    gamma-poll-lookahead-seconds: 3600
+    gamma-poll-max-idle-seconds: 21600
+    request-delay-millis: 100
+    max-tracked-markets: 500
+    on-trade-context-max-age-seconds: 300
