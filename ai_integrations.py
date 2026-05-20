@@ -63,6 +63,8 @@ def run_kronos_prediction(df: pd.DataFrame, horizon: int = 5, sentiment_score: f
             # Sentiment bazlı ek özellikler
             df_k['sentiment_momentum'] = df_k['close'].pct_change(5) * float(sentiment_score)
         
+        # Slice to the last 90 days to avoid long-term mean reversion artifacts in normalized space
+        df_k = df_k.tail(90)
         x_timestamp = pd.Series(df_k.index)
         
         # Tahmin edilecek gelecek tarihler
